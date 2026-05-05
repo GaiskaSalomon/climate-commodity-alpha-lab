@@ -1,0 +1,12 @@
+[project]
+name = "climate-commodity-alpha-lab"
+version = "0.1.0"
+description = "Quantitative commodity forecasting using price dynamics, weather anomalies and climate-risk signals"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+
+[tool.ruff]
+line-length = 100
