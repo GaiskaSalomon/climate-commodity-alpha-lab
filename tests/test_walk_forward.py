@@ -35,6 +35,14 @@ def test_walk_forward_no_future_data():
 
 def test_walk_forward_returns_dataframe():
     df = make_synthetic_panel()
-    out = walk_forward_validation(df, ["f1", "f2", "f3"], "target", Ridge())
+    out = walk_forward_validation(
+        df,
+        features=["f1", "f2", "f3"],
+        target="target",
+        model=Ridge(),
+        train_window=200,
+        test_window=21,
+        step_size=21,
+    )
     assert isinstance(out, pd.DataFrame)
     assert len(out) > 0
