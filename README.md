@@ -10,6 +10,19 @@ A quantitative research project for commodity return forecasting using price dyn
 
 Commodity markets are physically constrained: energy supply disrupts when hurricanes reach the Gulf of Mexico, grain yields fall under drought, and demand for natural gas spikes with temperature anomalies. This project transforms that physical domain knowledge into systematic, testable predictive signals using rigorous time-series validation.
 
+## Results (summary)
+
+Walk-forward validation (500-day train / 21-day test / 21-day step) over 7 commodity ETFs, 2007–2026, net of 5 bps one-way transaction costs.
+
+- Climate + price features beat price-only baselines on **5 of 7 assets** by Information Coefficient (IC).
+- Best assets: **SOYB (IC 0.121)** and **GLD (IC 0.113, net Sharpe 1.38)**.
+- Climate features add **+0.05 to +0.07 IC** on agricultural and gold tickers; the Gulf hurricane-disruption proxy ranks top-5 by XGBoost gain importance for energy.
+- Equal-weight portfolio: **net Sharpe ≈ 0.82** after costs.
+
+![Equity curve](reports/figures/equity_curve.png)
+
+> **Scope & honesty:** this is a *research study* on whether climate / alternative data adds predictive signal (measured by IC), **not** a deployable trading strategy. Drawdowns are large and some assets (e.g., UNG) are not forecastable with this feature set and are excluded from portfolio views. All results use strictly temporal validation (no look-ahead) and are reported net of costs. Full details in [`reports/quant_research_note.md`](reports/quant_research_note.md) and [`reports/backtest_report.md`](reports/backtest_report.md).
+
 ## Architecture
 
 ```mermaid
@@ -125,7 +138,7 @@ Physical climate-risk modeling and systematic commodity research share the same 
 ## Setup
 
 ```bash
-git clone https://github.com/your-username/climate-commodity-alpha-lab.git
+git clone https://github.com/GaiskaSalomon/climate-commodity-alpha-lab.git
 cd climate-commodity-alpha-lab
 pip install -r requirements.txt
 pip install -e .
