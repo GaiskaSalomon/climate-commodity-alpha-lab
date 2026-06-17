@@ -23,15 +23,24 @@ def max_drawdown(equity_curve: pd.Series) -> float:
     return (equity_curve / running_max - 1).min()
 
 
-def information_coefficient(predictions: pd.Series, realized: pd.Series) -> float:
-    valid = pd.concat([predictions, realized], axis=1).dropna()
+def _as_series(x) -> pd.Series:
+    """Accept either a pandas Series or a numpy array / list and return a Series."""
+    if isinstance(x, pd.Series):
+        return x.reset_index(drop=True)
+    return pd.Series(np.asarray(x).ravel())
+
+
+def information_coefficient(predictions, realized) -> float:
+    valid = pd.concat([_as_series(predictions), _as_series(realized)], axis=1).dropna()
     if valid.empty:
         return np.nan
     return spearmanr(valid.iloc[:, 0], valid.iloc[:, 1]).statistic
 
 
-def hit_rate(predictions: pd.Series, realized: pd.Series) -> float:
-    valid = pd.concat([predictions, realized], axis=1).dropna()
+def hit_rate(predictions, realized) -> float:
+    valid = pd.concat([_as_series(predictions), _as_series(realized)], axis=1).dropna()
+    if valid.empty:
+        return np.nan
     return (np.sign(valid.iloc[:, 0]) == np.sign(valid.iloc[:, 1])).mean()
 
 

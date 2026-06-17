@@ -131,6 +131,9 @@ climate-commodity-alpha-lab/
 | `07_regime_detection.ipynb` | Volatility and climate regime analysis |
 | `08_research_report.ipynb` | Full findings as a quant research note |
 
+> Notebooks `01` and `03`–`08` run end to end on the committed processed data (Python 3.10).
+> Notebook `02` (ERA5 weather features) is **optional**: it requires downloading ERA5 data via the Copernicus CDS API (and the `cfgrib`/`eccodes` stack). The pipeline runs without it — ERA5 features are skipped automatically when the raw files are not present.
+
 ## Why this project matters
 
 Physical climate-risk modeling and systematic commodity research share the same core challenge: transforming noisy, non-stationary time-series data into robust predictive signals. This project applies hydrometeorological domain knowledge — tropical cyclone tracks, precipitation, temperature — directly to commodity return forecasting, with the same rigor expected in production quant systems: temporal validation, realistic transaction costs, and structured reporting.
