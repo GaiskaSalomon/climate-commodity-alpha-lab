@@ -152,3 +152,7 @@ pytest tests/
 ## CV Summary
 
 > Built a systematic commodity forecasting pipeline using price dynamics, weather anomalies and tropical cyclone risk features. Implemented walk-forward validation, XGBoost/LightGBM models, signal generation, transaction-cost-aware backtesting and risk reporting. Designed to test whether climate-risk alternative data improves commodity return forecasts.
+
+## License
+
+MIT.
